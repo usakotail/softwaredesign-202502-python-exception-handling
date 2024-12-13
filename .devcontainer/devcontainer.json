@@ -1,0 +1,45 @@
+{
+  "name": "Debian Python 3.13.1",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python", // Python向け基本拡張
+        "ms-toolsai.jupyter", // Jupyter Notebook向け基本拡張
+        "charliermarsh.ruff", // Python向けLinter・フォーマッタ拡張
+        "usernamehw.errorlens" // メッセージをインライン表示する拡張
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python3", //Python拡張機能で使用されるPythonインタープリターへのパス
+        // --- Python設定 ---
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff", // フォーマッタにRuffを使用
+          "editor.formatOnSave": true, // 保存時に自動フォーマット
+          "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit", // 保存時に自動修正
+            "source.organizeImports": "explicit" // 保存時にインポートを整理
+          }
+        },
+        // --- Jupyter Notebook設定 ---
+        
+        "notebook.defaultFormatter": "charliermarsh.ruff", // フォーマッタにRuffを使用
+        "notebook.formatOnSave.enabled": true, // 保存時に自動フォーマット
+        "notebook.codeActionsOnSave": {
+          "notebook.source.fixAll": "explicit", // 保存時に自動修正
+          "notebook.source.organizeImports": "explicit" // 保存時にインポートを整理
+        },
+        // --- Ruff設定 ---
+        "ruff.path": [
+          "/home/vscode/.local/bin/ruff" // pipでインストールしたRuffを使用
+        ]
+      }
+    }
+  },
+  "remoteUser": "vscode",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/.local/bin" //pipでインストールしたパッケージのパスを追加
+  }
+}

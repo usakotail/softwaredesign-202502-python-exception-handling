@@ -1,0 +1,10 @@
+# Jupyter Notebookのバックアップディレクトリ
+.ipynb_checkpoints/
+
+# キャッシュディレクトリ
+__pycache__/
+.ruff_cache/
+
+# ログ・出力ファイル
+*.log
+*.txt
